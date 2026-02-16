@@ -3,66 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mendel's Photo Gallery 🐱</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Mendel's World 🐱</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #eee;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(233, 69, 96, 0.9);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid #ff6b9d;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .tagline {
+            background: linear-gradient(90deg, #ff6b9d, #c44569);
+            padding: 0.75rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(233, 69, 96, 0.3);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-content {
+            padding: 1.25rem;
+        }
+
+        .card h2 {
+            color: #ff6b9d;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            color: #ccc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(0,0,0,0.3);
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: #ff6b9d;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .gallery { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>🐱 Mendel's Photo Gallery</h1>
-        <p>Sitting on different surfaces, exploring the world, being ridiculously cute</p>
+        <h1>🐱 Mendel's World</h1>
+        <p>The greatest cat who ever lived — documented in 50 photos</p>
     </header>
-
+    <div class="tagline">"If I fits, I sits" — A visual chronicle of surfaces conquered</div>
+    
     <main>
         <div class="gallery">
-            <div class="photo-card">
-                <div class="photo-number">Photo 1</div>
-                <div class="cat-info">
-                    <h2>Window Watcher 🪟</h2>
-                    <p>The tabby with the dramatic head tilt and wide-eyed curious gaze</p>
-                    <p class="caption">Spotted something interesting? Always on patrol!</p>
+            <div class="card">
+                <img src="images/IMG_7680.JPG" alt="Counter Cat">
+                <div class="card-content">
+                    <h2>🧀 Kitchen Counter Sovereign</h2>
+                    <p>Standing on the dining table right on top of papers and books, giving the camera a "caught in the act" stare. Classic "cat where it's not supposed to be" energy.</p>
                 </div>
             </div>
 
-            <div class="photo-card">
-                <div class="photo-number">Photo 2</div>
-                <div class="cat-info">
-                    <h2>Sleepy Sweetheart 💜</h2>
-                    <p>The gray cat with the adorable tongue blep</p>
-                    <p class="caption">Little tongue out = maximum cuteness</p>
+            <div class="card">
+                <img src="images/IMG_7454.JPG" alt="Night Prowler">
+                <div class="card-content">
+                    <h2>🌙 Night Prowler</h2>
+                    <p>Gray tabby walking across a green lawn at night with alert, curious eyes. Mysterious midnight explorer caught mid-adventure.</p>
                 </div>
             </div>
 
-            <div class="photo-card">
-                <div class="photo-number">Photo 3</div>
-                <div class="cat-info">
-                    <h2>Cozy Cuddle Puddle 🧸</h2>
-                    <p>The gray cat resting in warm lighting by the window</p>
-                    <p class="caption">Perfect napping spot</p>
+            <div class="card">
+                <img src="images/IMG_5148.JPG" alt="Box Cat">
+                <div class="card-content">
+                    <h2>📦 If I Fits, I Sits</h2>
+                    <p>Lounging comfortably in an orange Nike shoebox on hardwood floor, bathed in warm sunlight. Peak contentment — the box has been claimed.</p>
                 </div>
             </div>
 
-            <div class="photo-card">
-                <div class="photo-number">Photo 4</div>
-                <div class="cat-info">
-                    <h2>Adventure Time 🎒</h2>
-                    <p>The tabby mid-adventure - always curious!</p>
-                    <p class="caption">Exploring new corners of the house</p>
+            <div class="card">
+                <img src="images/IMG_4846.JPG" alt="Counter Cat">
+                <div class="card-content">
+                    <h2>🏠 House Owner</h2>
+                    <p>Lounging on granite kitchen counter, sprawled across papers with paw on a toy, gazing into the distance with feline indifference. "This is my bed now."</p>
                 </div>
             </div>
 
-            <div class="photo-card">
-                <div class="photo-number">Photo 5</div>
-                <div class="cat-info">
-                    <h2>Box Inspector 📦</h2>
-                    <p>The gray cat investigating the cardboard box</p>
-                    <p class="caption">Is this box safe for cats? Important research!</p>
+            <div class="card">
+                <img src="images/IMG_4167.JPG" alt="Hanukkah Cat">
+                <div class="card-content">
+                    <h2>🕯️ Holiday Throne</h2>
+                    <p>Relaxed on dining table with Hanukkah gifts, being pet by a child with a menorah glowing nearby. Cozy family chaos — the cat owns the presents.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="images/IMG_0879.JPG" alt="Baby Cat">
+                <div class="card-content">
+                    <h2>👶 Tolerant Baby</h2>
+                    <p>Being cradled like a baby in a child's arms, looking relaxed but slightly skeptical. The classic "tolerant pet putting up with human antics" energy.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="images/100_9606.JPG" alt="Gift Box Cat">
+                <div class="card-content">
+                    <h2>🎁 Present Protector</h2>
+                    <p>Lounging on top of a large gift box wrapped in newspaper comics and balloon paper during the holidays. Claiming the biggest present as personal throne.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="images/DSC03048.JPG" alt="Meow">
+                <div class="card-content">
+                    <h2>🗣️ LET ME OUT</h2>
+                    <p>By glass door, mid-meow with mouth open, demanding eyes looking directly at camera. Pure "let me outside RIGHT NOW" energy.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="images/DSC03057.JPG" alt="Green Eyes">
+                <div class="card-content">
+                    <h2>😾 Demanding Attention</h2>
+                    <p>Tabby with striking green eyes standing on hardwood floor, mouth open mid-meow. Classic demand for food or pets with maximum vocal urgency.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="images/2018-03-19_18-37-01_338.jpeg" alt="Office Cat">
+                <div class="card-content">
+                    <h2>💼 Office Supervisor</h2>
+                    <p>Perched on top of an office chair in home office, gazing at camera with slightly judgmental expression. "You're interrupting my supervision duties."</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="images/2020-03-24_16-21-03_000.png" alt="Chair Cat">
+                <div class="card-content">
+                    <h2>🪑 Chair Kingdom</h2>
+                    <p>Perched on the back of a wooden chair looking down at Christmas presents below. Classic "cat surveying their kingdom during the holidays."</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="images/2023-07-22_16-18-47_002.jpeg" alt="Bed Cat">
+                <div class="card-content">
+                    <h2>🛏️ Bed Owner</h2>
+                    <p>Gray tabby lounging in classic "loaf" position on white bed with decorative pillows including a butterfly. Cozy and content — clearly owns the bed.</p>
                 </div>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>Made with 🧡 by <a href="https://openclaw.ai">OpenClaw</a></p>
+        <p>🐾 Made with love for the best cat in the world 🐾</p>
     </footer>
 </body>
 </html>
