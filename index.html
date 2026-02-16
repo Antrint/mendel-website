@@ -1,289 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mendel's World 🐱</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: #eee;
-            min-height: 100vh;
-            line-height: 1.6;
-        }
+<!-- Batch image processing script -->
+<script>
+const images = [
+    {file: "100_9606.JPG", desc: "🎁 Present Protector - Mendel sitting on gift box like a tiny guard dragon"},
+    {file: "DSC03057.JPG", desc: "🗣️ LET ME OUT - Mendel at glass door, demanding to go outside"},
+    {file: "DSC03048.JPG", desc: "😾 Demanding Attention - Green eyes tabby demanding treats now"},
+    {file: "2018-03-19_18-37-01_338.jpeg", desc: "💼 Office Supervisor - Gray tabby on office chair supervising"},
+    {file: "2020-03-24_16-21-03_000.png", desc: "🪑 Chair Kingdom - Mendel discovered Christmas magic on chair"},
+    {file: "2023-07-22_16-18-47_002.jpeg", desc: "🛏️ Bed Owner - Gray tabby owning the bed"},
+    {file: "IMG_0879.JPG", desc: "👶 Tolerant Baby - Brown tabby cradled like a baby"},
+    {file: "IMG_4167.JPG", desc: "🕯️️ Holiday Throne - Relaxed on dining table during holidays"},
+    {file: "IMG_4846.JPG", desc: "📦 Box Inspector - Gray tabby investigating cardboard box"},
+    {file: "IMG_5148.JPG", desc: "🌙 Night Prowler - Gray tabby on midnight adventure"},
+    {file: "IMG_7454.JPG", desc: "🧀 Kitchen Counter - Gray tabby on dining table, claiming 'I own this space'"},
+    {file: "IMG_7680.JPG", desc: "🏠 House Owner - Gray tabby on granite counter"},
+    {file: "2025-10-04-14-27-20_291.jpg", desc: "🪟 Kitchen Counter - Tabby clearing table, claiming throne"},
+    {file: "2025-10-23-11-19-08_047.jpg", desc: "📦 Box Explorer - Tabby discovered Amazon delivery, claimed box"},
+    {file: "2025-12-02-17-52-00_378.jpg", desc: "🛁 Bathtub Admiral - Gray tabby discovered tiny pool"},
+    {file: "2025-03-19_17-40-26-576.jpg", desc: "🛏️ Bed Owner - Gray tabby in 'loaf' position on white bed"},
+    {file: "2025-04-21-17-18-47_708.jpg", desc: "🗣️ LET ME OUT - Tabby mid-meow demanding to go outside"},
+    {file: "2025-03-24_21-55-32_525.jpg", desc: "😾 Demanding Attention - Green eyes tabby with intense gaze"},
+    {file: "2025-11-26-16-06-47_749.jpg", desc: "💼 Desk Supervisor - Tabby on office chair judging humans"},
+    {file: "2025-09-27-13-00-24-797.jpg", desc: "🪑 Chair Kingdom - Tabby accepting Christmas present fate"},
+    {file: "2025-10-29-16-59-55_543.jpg", desc: "🏴 Carpet Supervisor - Gray tabby supervising laundry with judgment"},
+    {file: "2025-03-14-19-26-25-215.jpg", desc: "🛋️ Couch Commander - Gray tabby owning couch"},
+    {file: "2025-07-05-14-45-41-191.jpg", desc: "📦 Box Explorer - Gray tabby on high shelf, claiming toys"},
+    {file: "2025-11-26-16-06-47_749.jpg", desc: "🍽️ Table Dominator - Gray tabby clearing table, acknowledging 'you moved my bowl'"},
+    {file: "2025-09-27-13-00-24-797.jpg", desc: "🧺 Laundry Monitor - Gray tabby supervising laundry, warning 'check for errors'"},
+    {file: "2025-10-29-16-59-13-726.jpg", desc: "🚽️ Toilet Sentinel - Gray tabby guarding toilet, 'I'll alert you immediately if anything wrong'"},
+    {file: "2025-03-14-19-26-25_215.jpg", desc: "💼 Desk Supervisor - Tabby on desk, 'I could organize this better if you let me use keyboard', 'just appreciating the vibe'"}
+];
 
-        header {
-            background: rgba(233, 69, 96, 0.9);
-            padding: 3rem 2rem;
-            text-align: center;
-            border-bottom: 4px solid #ff6b9d;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.95;
-        }
-
-        .tagline {
-            background: linear-gradient(90deg, #ff6b9d, #c44569);
-            padding: 0.75rem;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(233, 69, 96, 0.3);
-        }
-
-        .card img {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            object-fit: contain;
-            display: block;
-        }
-
-        .card-content {
-            padding: 1.25rem;
-        }
-
-        .card h2 {
-            color: #ff6b9d;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card p {
-            font-size: 0.9rem;
-            opacity: 0.85;
-            color: #ccc;
-        }
-
-        .caption {
-            color: #fcb69f;
-            font-style: italic;
-            background: rgba(252, 186, 3, 0.1);
-            padding: 0.75rem;
-            border-radius: 8px;
-            display: inline-block;
-        }
-
-        footer {
-            text-align: center;
-            padding: 3rem;
-            background: rgba(0, 0, 0, 0.3);
-            margin-top: 3rem;
-        }
-
-        footer a {
-            color: #ff6b9d;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .gallery { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>🐱 Mendel's World</h1>
-        <p>50 photos of pure cat energy!</p>
-    </header>
-    <div class="tagline">"The browser says 'no images found' but we know the truth — Mendel owns everything"</div>
-    
-    <main>
+const gallery = document.querySelector('.gallery');
+if (gallery) {
+    gallery.innerHTML = images.map(img => `
         <div class="card">
-            <img src="images/100_9606.JPG" alt="Gift Box Cat">
+            <img src="images/${img.file}" alt="${img.file}">
             <div class="card-content">
-                <h2>🎁 Present Protector</h2>
-                <p>Mendel sitting like a tiny guard dragon on top of a mountain of gift boxes. Nothing gets past this tabby's watchful eye. Every present is safe under Mendel's royal supervision.</p>
-                <p class="caption">"Your gifts are MY presents now. I have claimed the box throne. Move along, human."</p>
+                <h2>${img.desc.split(' - ')[0]}</h2>
             </div>
         </div>
-
-        <div class="card">
-            <img src="images/DSC03057.JPG" alt="Meow">
-            <div class="card-content">
-                <h2>🗣️ LET ME OUT</h2>
-                <p>Face pressed against the glass, eyes locked in pure determination. Mouth slightly open, telepathically shouting: "OPEN THE DOOR RIGHT MEOW!" Mendel has places to go and humans are the only thing stopping him.</p>
-                <p class="caption">Window to the soul → currently locked</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="images/DSC03048.JPG" alt="Green Eyes">
-            <div class="card-content">
-                <h2>😾 Demanding Attention</h2>
-                <p>Sitting on the hardwood floor, staring UP at the camera with those intense green eyes. You can see the tiny light reflection in each pupil. This tabby knows EXACTLY what they want. And they want it NOW. Not in five minutes. Not in ten. RIGHT. NOW.</p>
-                <p class="caption">The "pay attention or I bite" face — maximum cuteness with a side of "I will stare at you until you give me treats"</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="images/2018-03-19_18-37-01_338.jpeg" alt="Office Cat">
-            <div class="card-content">
-                <h2>💼 Office Supervisor</h2>
-                <p>Perched on top of an office chair (which is clearly Mendel's subordinate) looking down at everything with judgmental eyes. The expression says: "I run this business now. Human tried to make me an office cat but I saw the opportunity and became the boss instead."</p>
-                <p class="caption">Corporate takeover complete</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="images/2020-03-24_16-21-03_000.png" alt="Chair Cat">
-            <div class="card-content">
-                <h2>🪑 Chair Kingdom</h2>
-                <p>Mendel discovered the magic of Christmas presents — they are MENDIBLE. So naturally, the chair must belong to Mendel too. Here we see the gray tabby has fully accepted their fate as the royal cushion. The chair is now known as "The Mendel Throne" and is treated with maximum reverence and respect.</p>
-                <p class="caption">Decorations have been removed — Mendel doesn't need them</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="images/2023-07-22_16-18-47_002.jpeg" alt="Bed Cat">
-            <div class="card-content">
-                <h2>🛏️ Bed Owner</h2>
-                <p>The gray tabby has achieved peak cat status — they've transcended ordinary feline limitations. They're not just sleeping in a bed; they OWNING it. Here we see the majestic "loaf" position, claiming the most comfortable sleeping spot in the entire house. The look on their face says: "This is MY bed. I sleep here. You sleep there if I say so. Which I DON'T."</p>
-                <p class="caption">Supreme bed sovereignty established</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="images/2025-10-04_14-27-20_291.jpg" alt="Window Cat">
-            <div class="card-content">
-                <h2>🪟 Kitchen Counter</h2>
-                <p>A sunny afternoon at the window, Mendel is standing tall on the kitchen counter, paws firmly planted, gazing at nothing. Or seemingly nothing — but Mendel knows better. They're tracking a fly that only they can see, plotting their jump trajectory, preparing to pounce at the exact moment the fly stops. This tabby doesn't miss. They never do.</p>
-                <p class="caption">"Human thinks they're just looking at nothing... but I know there's a fly."</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="images/2025-10-23_11-19-08_047.jpg" alt="Shelf Cat">
-            <div class="card-content">
-                <h2>📦 High Shelf Sentinel</h2>
-                <p>Mendel has somehow reached the highest shelf in the kitchen. From this vantage point, they can see ALL the treats, monitor human snack consumption, and judge if any toy has been moved without permission. The look on their face is pure feline wisdom mixed with a hint of "I know what you did with that one toy..."</p>
-                <p class="caption">"Where is the other one? You took it, didn't you? I'm watching you."</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="images/2025-12-02_17-48-15_417.jpg" alt="Floor Cat">
-            <div class="card-content">
-                <h2>🏠 Floor Inspector</h2>
-                <p>Sprawled across the hardwood floor, Mendel is investigating a mysterious loose screw. They sniff it carefully. They poke it with a claw. They stare at it intensely. This screw is clearly up to something suspicious. Mendel concludes: "Not cat-safe. Human will deal with it."</p>
-                <p class="caption">"I'll be back in 20 minutes to check again" — Mendel, waiting...</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="images/2021-03-19_17-40-26_576.jpg" alt="Bathtub Cat">
-            <div class="card-content">
-                <h2>🛁 Bathtub Admiral</h2>
-                <p>Mendel has discovered the bathtub. They've been in there a few times now. At first, it seemed like a weird water dish that was too small for their taste. But then they realized: it's a TINY POOL just for ME. The splash zone is activated. The expression is pure joy — Mendel has found their personal spa.</p>
-                <p class="caption">"This is MY pool now. I swim when I want. Human doesn't need to know."</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="images/2021-04-21_17-18-47_708.jpg" alt="Rug Cat">
-            <div class="card-content">
-                <h2>🏴 Carpet Supervisor</h2>
-                <p>Lounging regally on the living room rug, Mendel is demonstrating the ancient feline art of "the roll." They flop onto their side, kick their back legs in the air, then curl into a perfect ball of fluff. Afterward, they look up with an expression of pure feline satisfaction. "I made this rug comfortable for you. You're welcome."</p>
-                <p class="caption">The rug was nice anyway</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="images/2025-03-24_21-55-32_525.jpg" alt="Couch Cat">
-            <div class="card-content">
-                <h2>🛋️ Couch Commander</h2>
-                <p>Mendel is lounging on the couch, clearly in their element. They look like they were born here (which they weren't, but that's cat logic — they arrived and they claimed it). The cushions have been perfectly molded to Mendel's body shape. The look on their face says: "This couch accepts me. I am home now."</p>
-                <p class="caption">"Human doesn't understand. When I'm on the couch, I am the king."</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="images/2024-07-05_14-45-41_191.jpg" alt="Box Cat">
-            <div class="card-content">
-                <h2>📦 Box Explorer</h2>
-                <p>Mendel discovered a cardboard box that had arrived. The investigation began with extreme caution — they poked it, sniffed it, circled it. After determining it was safe (a small Amazon shipment), they claimed it immediately. Now it serves as Mendel's designated napping spot, treasure hoard, and strategic lookout point. The box door is slightly ajar — always ready for more discoveries.</p>
-                <p class="caption">"Amazon delivery received. Status: Mendel property now."</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="images/2025-11-26_16-06-47_749.jpg" alt="Table Cat">
-            <div class="card-content">
-                <h2>🍽️ Table Dominator</h2>
-                <p>Clearing the dinner table so Mendel can access their food bowl. The gray tabby politely steps aside, watching with mild curiosity. The moment the table is clear, Mendel hops up, tail twitching with anticipation. They're not letting any table-related opportunity pass them by. The subtle look says: "You moved my bowl. I acknowledge your service. But remember who owns the table."</p>
-                <p class="caption">Table cleared. Proceeding to meal.</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="images/2025-09-27_13-00-24_797.jpg" alt="Laundry Cat">
-            <div class="card-content">
-                <h2>🧺 Laundry Monitor</h2>
-                <p>Mendel is supervising the laundry process. They sit on top of the washing machine, watching the clothes spin around and around. When the cycle stops, they give a small meow of approval ("Good job, humans"). The humans asked Mendel to "check the laundry," and Mendel interpreted this as "watch it for errors and eat any socks that fall out." Mendel takes their job VERY seriously.</p>
-                <p class="caption">"Laundry is serious business. Socks at risk."</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="images/2025-10-29_16-59-13_726.jpg" alt="Toilet Cat">
-            <div class="card-content">
-                <h2>🚽 Toilet Sentinel</h2>
-                <p>Mendel is keeping a watchful eye on the bathroom. No unauthorized flushing allowed! They inspect the toilet bowl after each use to ensure human hasn't been hiding snacks. The dignity of the bathroom must be maintained. The look is pure vigilance mixed with a hint of "If anything seems wrong, I will alert you immediately with my loudest possible yowl."</p>
-                <p class="caption">"Bathroom security level: HIGH"</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="images/2025-03-14_19-26-25_215.jpg" alt="Desk Cat">
-            <div class="card-content">
-                <h2>💼 Desk Supervisor</h2>
-                <p>Mendel is sitting on the desk in the home office, monitoring human productivity. They're judging every email, judging every document, silently observing the chaos. The paw rests gently on the keyboard as if to say "I could organize this better if you let me use the keyboard." But they don't actually use it — they just appreciate the feeling of power that comes with being in charge. Sometimes they bat at the cursor just to remind humans who's really boss around here.</p>
-                <p class="caption">"Not using keyboard — just appreciating the vibe"</p>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <p>🐾 Made with love for the best cat in the world 🐾</p>
-    </footer>
-</body>
-</html>
+    `).join('');
+}
+</script>
