@@ -1,44 +1,95 @@
-<!-- Batch image processing script -->
-<script>
-const images = [
-    {file: "100_9606.JPG", desc: "🎁 Present Protector - Mendel sitting on gift box like a tiny guard dragon"},
-    {file: "DSC03057.JPG", desc: "🗣️ LET ME OUT - Mendel at glass door, demanding to go outside"},
-    {file: "DSC03048.JPG", desc: "😾 Demanding Attention - Green eyes tabby demanding treats now"},
-    {file: "2018-03-19_18-37-01_338.jpeg", desc: "💼 Office Supervisor - Gray tabby on office chair supervising"},
-    {file: "2020-03-24_16-21-03_000.png", desc: "🪑 Chair Kingdom - Mendel discovered Christmas magic on chair"},
-    {file: "2023-07-22_16-18-47_002.jpeg", desc: "🛏️ Bed Owner - Gray tabby owning the bed"},
-    {file: "IMG_0879.JPG", desc: "👶 Tolerant Baby - Brown tabby cradled like a baby"},
-    {file: "IMG_4167.JPG", desc: "🕯️️ Holiday Throne - Relaxed on dining table during holidays"},
-    {file: "IMG_4846.JPG", desc: "📦 Box Inspector - Gray tabby investigating cardboard box"},
-    {file: "IMG_5148.JPG", desc: "🌙 Night Prowler - Gray tabby on midnight adventure"},
-    {file: "IMG_7454.JPG", desc: "🧀 Kitchen Counter - Gray tabby on dining table, claiming 'I own this space'"},
-    {file: "IMG_7680.JPG", desc: "🏠 House Owner - Gray tabby on granite counter"},
-    {file: "2025-10-04-14-27-20_291.jpg", desc: "🪟 Kitchen Counter - Tabby clearing table, claiming throne"},
-    {file: "2025-10-23-11-19-08_047.jpg", desc: "📦 Box Explorer - Tabby discovered Amazon delivery, claimed box"},
-    {file: "2025-12-02-17-52-00_378.jpg", desc: "🛁 Bathtub Admiral - Gray tabby discovered tiny pool"},
-    {file: "2025-03-19_17-40-26-576.jpg", desc: "🛏️ Bed Owner - Gray tabby in 'loaf' position on white bed"},
-    {file: "2025-04-21-17-18-47_708.jpg", desc: "🗣️ LET ME OUT - Tabby mid-meow demanding to go outside"},
-    {file: "2025-03-24_21-55-32_525.jpg", desc: "😾 Demanding Attention - Green eyes tabby with intense gaze"},
-    {file: "2025-11-26-16-06-47_749.jpg", desc: "💼 Desk Supervisor - Tabby on office chair judging humans"},
-    {file: "2025-09-27-13-00-24-797.jpg", desc: "🪑 Chair Kingdom - Tabby accepting Christmas present fate"},
-    {file: "2025-10-29-16-59-55_543.jpg", desc: "🏴 Carpet Supervisor - Gray tabby supervising laundry with judgment"},
-    {file: "2025-03-14-19-26-25-215.jpg", desc: "🛋️ Couch Commander - Gray tabby owning couch"},
-    {file: "2025-07-05-14-45-41-191.jpg", desc: "📦 Box Explorer - Gray tabby on high shelf, claiming toys"},
-    {file: "2025-11-26-16-06-47_749.jpg", desc: "🍽️ Table Dominator - Gray tabby clearing table, acknowledging 'you moved my bowl'"},
-    {file: "2025-09-27-13-00-24-797.jpg", desc: "🧺 Laundry Monitor - Gray tabby supervising laundry, warning 'check for errors'"},
-    {file: "2025-10-29-16-59-13-726.jpg", desc: "🚽️ Toilet Sentinel - Gray tabby guarding toilet, 'I'll alert you immediately if anything wrong'"},
-    {file: "2025-03-14-19-26-25_215.jpg", desc: "💼 Desk Supervisor - Tabby on desk, 'I could organize this better if you let me use keyboard', 'just appreciating the vibe'"}
-];
-
-const gallery = document.querySelector('.gallery');
-if (gallery) {
-    gallery.innerHTML = images.map(img => `
-        <div class="card">
-            <img src="images/${img.file}" alt="${img.file}">
-            <div class="card-content">
-                <h2>${img.desc.split(' - ')[0]}</h2>
-            </div>
-        </div>
-    `).join('');
-}
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mendel's World</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#1a1a2e;color:#eee;min-height:100vh}
+header{background:rgba(233,69,96,0.9);padding:2rem;text-align:center}
+header h1{font-size:2.5rem;text-shadow:2px 2px 4px rgba(0,0,0,0.3)}
+header p{font-size:1.1rem;opacity:0.9;margin-top:0.5rem}
+main{max-width:1200px;margin:0 auto;padding:1.5rem}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.card{background:rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:transform 0.3s;border:1px solid rgba(255,255,255,0.1)}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(233,69,96,0.2)}
+.card img{width:100%;height:auto;max-height:400px;object-fit:contain;display:block;background:#111}
+footer{text-align:center;padding:2rem;margin-top:2rem;opacity:0.7}
+</style>
+</head>
+<body>
+<header>
+<h1>Mendel's World</h1>
+<p>A visual chronicle of the greatest cat who ever lived</p>
+</header>
+<main>
+<div class="gallery">
+<div class="card"><img src="images/100_9606.JPG" alt="Mendel"></div>
+<div class="card"><img src="images/2018-03-19_18-37-01_338.jpeg" alt="Mendel"></div>
+<div class="card"><img src="images/2018-10-26_19-53-03_744.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2019-12-26_18-46-30_912.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2020-02-14_18-25-33_728.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2020-03-24_16-21-03_000.png" alt="Mendel"></div>
+<div class="card"><img src="images/2020-08-16_10-10-44_313.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2020-08-28_20-22-50_451.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2020-11-28_21-04-50_887.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2021-02-09_14-40-24_993.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2021-02-20_17-52-00_378.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2021-03-19_17-40-26_576.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2021-04-21_17-18-47_708.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2022-05-17_11-00-16_417.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2022-06-07_22-41-01_791.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2022-12-31_21-22-58_874.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2023-01-16_17-06-08_906.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2023-06-24_14-47-27_890.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2023-07-22_16-18-47_002.jpeg" alt="Mendel"></div>
+<div class="card"><img src="images/2023-11-10_16-34-20_102.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2024-01-11_19-17-20_805.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2024-02-03_10-27-32_469.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2024-02-08_06-50-55_112.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2024-02-09_16-59-55_543.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2024-06-15_13-40-31_147.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2024-07-05_14-45-41_191.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2024-07-06_11-31-25_687.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2024-08-03_09-01-18_740.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2024-08-25_14-54-54_874.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2024-11-03_13-41-23_368.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-03-13_07-40-25_848.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-03-14_19-26-25_215.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-03-24_21-55-32_525.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-03-25_16-14-32_047.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-04-23_16-57-19_067.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-06-24_15-17-43_137.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-07-24_20-42-59_265.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-07-25_18-38-28_166.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-08-31_16-18-09_706.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-09-01_10-48-53_565.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-09-27_13-00-24_797.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-09-30_15-23-59_912.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-10-04_14-27-20_291.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-10-23_11-19-08_047.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-10-29_16-59-13_726.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-11-26_16-06-47_749.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-12-02_17-48-15_417.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2025-12-13_13-52-50_955.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2026-01-02_16-49-52_448.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2026-01-19_20-02-26_965.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2026-02-13_14-57-19_366.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/2026-02-13_15-08-39_187.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/DSC03048.JPG" alt="Mendel"></div>
+<div class="card"><img src="images/DSC03057.JPG" alt="Mendel"></div>
+<div class="card"><img src="images/IMG_0419.JPG" alt="Mendel"></div>
+<div class="card"><img src="images/IMG_0879.JPG" alt="Mendel"></div>
+<div class="card"><img src="images/IMG_4167.JPG" alt="Mendel"></div>
+<div class="card"><img src="images/IMG_4846.JPG" alt="Mendel"></div>
+<div class="card"><img src="images/IMG_5148.JPG" alt="Mendel"></div>
+<div class="card"><img src="images/IMG_7454.JPG" alt="Mendel"></div>
+<div class="card"><img src="images/IMG_7680.JPG" alt="Mendel"></div>
+<div class="card"><img src="images/mendel-gray-tongue-blep.jpg" alt="Mendel"></div>
+<div class="card"><img src="images/mendel-tabby-window.jpg" alt="Mendel"></div>
+</div>
+</main>
+<footer>Made with love for the best cat in the world</footer>
+</body>
+</html>
